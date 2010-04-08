@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Maint Server</key>
+	<string>alfa.mrjoy.com</string>
+	<key>Maint UserName</key>
+	<string>jfrisby</string>
+	<key>Maint database name</key>
+	<string>unitytest</string>
+	<key>Maint port number</key>
+	<string>10733</string>
+	<key>Maint project name</key>
+	<string>UnityTest</string>
+	<key>Maint Password</key>
+	<string></string>
+	<key>Maint settings type</key>
+	<string>manual</string>
+	<key>Maint Timeout</key>
+	<string>5</string>
+	<key>Maint Connection Settings</key>
+	<string></string>
+</dict>
+</plist>
