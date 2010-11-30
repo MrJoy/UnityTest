@@ -3,5 +3,22 @@ Library/cache
 Library/ScriptAssemblies
 Library/InspectorExpandedItems.asset
 Library/expandedItems
+Library/[Pp]reviews/
 Library/unity default resources
 Library/unity editor resources
+Library/AssetImportState
+Library/guidmapper
+Library/AssetVersioning.db
+Library/BuildPlayer.prefs
+Library/EditorUserBuildSettings.asset
+Library/FailedAssetImports.txt
+Library/MonoManager.asset
+Library/ProjectUsesCompressTexturesOnImport
+Library/ScriptMapper
+Library/ServerPreferences.plist
+Library/assetDatabase3
+Library/assetservercachev3
+*.sln
+*.csproj
+*.suo
+obj/
