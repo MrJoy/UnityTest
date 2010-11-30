@@ -65,11 +65,11 @@ public class EventHistory {
   public float realtimeSinceStartup;
   public string otherData;
 
-  protected virtual EventHistory() {
+  protected EventHistory() {
     throw new System.Exception("Nope.");
   }
 
-  public virtual EventHistory(Evt n) {
+  public EventHistory(Evt n) {
     name = n;
     enabledState = true;
     activeState = true;
@@ -78,28 +78,28 @@ public class EventHistory {
     otherData = null;
   }
 
-  public virtual EventHistory(Evt n, bool e, bool a) : this(n) {
+  public EventHistory(Evt n, bool e, bool a) : this(n) {
     enabledState = e;
     activeState = a;
   }
 
-  public virtual EventHistory(Evt n, int f) : this(n) {
+  public EventHistory(Evt n, int f) : this(n) {
     frame = f;
   }
 
-  public virtual EventHistory(Evt n, int f, float r) : this(n, f) {
+  public EventHistory(Evt n, int f, float r) : this(n, f) {
     realtimeSinceStartup = r;
   }
 
-  public virtual EventHistory(Evt n, bool e, bool a, int f) : this(n, e, a) {
+  public EventHistory(Evt n, bool e, bool a, int f) : this(n, e, a) {
     frame = f;
   }
 
-  public virtual EventHistory(Evt n, bool e, bool a, int f, float r) : this(n, e, a, f) {
+  public EventHistory(Evt n, bool e, bool a, int f, float r) : this(n, e, a, f) {
     realtimeSinceStartup = r;
   }
 
-  public virtual EventHistory(Evt n, bool e, bool a, int f, float r, string o) : this(n, e, a, f, r) {
+  public EventHistory(Evt n, bool e, bool a, int f, float r, string o) : this(n, e, a, f, r) {
     otherData = o;
   }
 
@@ -129,13 +129,13 @@ public class EventHistory {
 }
 
 public class ExpectedEvent : EventHistory {
-  public override ExpectedEvent(Evt n) : base(n) {}
-  public override ExpectedEvent(Evt n, bool e, bool a) : base(n, e, a) {}
-  public override ExpectedEvent(Evt n, int f) : base(n, f) {}
-  public override ExpectedEvent(Evt n, int f, float r) : base(n, f, r) {}
-  public override ExpectedEvent(Evt n, bool e, bool a, int f) : base(n, e, a, f) {}
-  public override ExpectedEvent(Evt n, bool e, bool a, int f, float r) : base(n, e, a, f, r) {}
-  public override ExpectedEvent(Evt n, bool e, bool a, int f, float r, string o) : base(n, e, a, f, r, o) {}
+  public ExpectedEvent(Evt n) : base(n) {}
+  public ExpectedEvent(Evt n, bool e, bool a) : base(n, e, a) {}
+  public ExpectedEvent(Evt n, int f) : base(n, f) {}
+  public ExpectedEvent(Evt n, int f, float r) : base(n, f, r) {}
+  public ExpectedEvent(Evt n, bool e, bool a, int f) : base(n, e, a, f) {}
+  public ExpectedEvent(Evt n, bool e, bool a, int f, float r) : base(n, e, a, f, r) {}
+  public ExpectedEvent(Evt n, bool e, bool a, int f, float r, string o) : base(n, e, a, f, r, o) {}
 
   protected virtual void TimeToString(System.Text.StringBuilder sb) {
     if(frame > 0) sb.AppendFormat("{0:0000}", frame);

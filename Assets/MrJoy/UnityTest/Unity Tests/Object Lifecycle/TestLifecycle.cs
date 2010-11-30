@@ -25,8 +25,7 @@ public class TestLifecycle : EventTest {
       new ExpectedEvent(Evt.LateUpdate, f),
 
       new ExpectedEvent(Evt.Update, f+1),
-      new ExpectedEvent(Evt.LateUpdate, f+1),
-      new OnDisableFromDestroy(f+1),
+      new OnDisableFromDestroy(false, f+1),
     };
 
     GameObject tmp = new GameObject("Simple Lifecycle", new Type[] { typeof(LifecycleBehaviour) });
