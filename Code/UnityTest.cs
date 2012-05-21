@@ -9,12 +9,12 @@
 //  2009-10-14 - jdf - Add support for non-coroutine test methods.
 //                   - Add support for expected exceptions.
 //  2009-09-05 - jdf - Ditch console output until I can do a better job of it.
-//                   - Make in-game GUI show in-editor, since Unity/iPhone 
+//                   - Make in-game GUI show in-editor, since Unity/iPhone
 //                     throws gunk into the logs with custom windows.
-//                   - Space test methods out a frame in order to avoid 
+//                   - Space test methods out a frame in order to avoid
 //                     clobbering subsequent methods.
 //                   - Add support for captureFrameRate.
-//                   - Add proper exception handling support by controlling 
+//                   - Add proper exception handling support by controlling
 //                     coroutine execution flow. (W00t!)
 //                   - Eliminate need for ugly hack syntax of:
 //                       if(AssertBlah(...)) { yield break; }
@@ -23,8 +23,8 @@
 //  2009-07-02 - jdf - Initial version.
 //
 //-----------------------------------------------------------------
-// Base class for unit tests.  Provides functionality for assertions and the 
-// like.  To use it, create a sub-class, and create various public instance 
+// Base class for unit tests.  Provides functionality for assertions and the
+// like.  To use it, create a sub-class, and create various public instance
 // methods with names beginning with "Test".
 //
 // Override "Setup" and "TearDown" to set up state that's needed across tests.
@@ -65,7 +65,7 @@ public class TestMessage {
   public string message;
   public string trace;
   public Exception exception;
-  
+
   private static string _AssetDirectory = String.Empty;
   private string AssetDirectory {
     get {
@@ -86,9 +86,9 @@ public class TestMessage {
         string fileName = f.GetFileName();
         // Filter out UnityTest itself...
         if(fileName.EndsWith("UnityTest.cs")) continue;
-      
-        // Shorten filenames down to the salient bits.  Would use 
-        // Application.dataPath, BUUUT that approach doesn't help unless we're 
+
+        // Shorten filenames down to the salient bits.  Would use
+        // Application.dataPath, BUUUT that approach doesn't help unless we're
         // running in the editor.
         fileName = fileName.Replace(AssetDirectory, "");
 
@@ -101,7 +101,7 @@ public class TestMessage {
           .Append(fileName).Append(":line ").Append(f.GetFileLineNumber())
           .Append("\n");
       } catch(NullReferenceException) {
-        // GetFileName can throw an NRE.  Presumably from generates code that 
+        // GetFileName can throw an NRE.  Presumably from generates code that
         // has no corresponding file?
       }
     }
@@ -126,9 +126,9 @@ public class TestResult {
 
   public bool IsRunning { get { return isRunning; } }
   public bool Passed { get { return assertionsFailed == 0; } }
-  
-  public void Done() { 
-    isRunning = false; 
+
+  public void Done() {
+    isRunning = false;
   }
 }
 
@@ -137,7 +137,7 @@ public abstract class UnityTest : MonoBehaviour {
   // Interface for sub-classes.
   // ===========================================================================
   // Enabling breakOnFailure will trigger the editor to pause when an assertion
-  // fails, by Any Means Necessary in order to ensure that you can examine the 
+  // fails, by Any Means Necessary in order to ensure that you can examine the
   // scene state in peace.
   public bool breakOnFailure = false;
 
@@ -204,7 +204,7 @@ public abstract class UnityTest : MonoBehaviour {
       // Should already be marked as failed, so nothing to do here really.
       hasValue = false;
     } catch(System.Exception ex) {
-      // This happens if there's no yield to turn the method into a 
+      // This happens if there's no yield to turn the method into a
       // coroutine...
       exceptionThrown = ex;
       hasValue = false;
@@ -220,7 +220,7 @@ public abstract class UnityTest : MonoBehaviour {
       // Should already be marked as failed, so nothing to do here really.
       hasValue = false;
     } catch(System.Exception ex) {
-      // This happens if there's no yield to turn the method into a 
+      // This happens if there's no yield to turn the method into a
       // coroutine...
       exceptionThrown = ex;
       hasValue = false;
@@ -240,7 +240,7 @@ public abstract class UnityTest : MonoBehaviour {
     }
   }
 
-  // Can't do ref params to a coroutine so we carry this as instance state.  
+  // Can't do ref params to a coroutine so we carry this as instance state.
   // Alternative is a monolithic test method.  Yuck.
   private System.Exception exceptionThrown = null;
   private bool hasValue = true;
@@ -278,7 +278,7 @@ public abstract class UnityTest : MonoBehaviour {
       foreach(ShouldThrowExceptionAttribute s in attrs)
         allowedExceptionTypes.Add(s.allowedExceptionType);
     }
-    
+
     bool wantException = (allowedExceptionTypes != null) && (allowedExceptionTypes.Count > 0);
     bool gotException = exceptionThrown != null;
 
@@ -312,10 +312,10 @@ public abstract class UnityTest : MonoBehaviour {
     Instance = this;
     Type t = GetType();
     MethodInfo[] methods = t.GetMethods(BindingFlags.Public | BindingFlags.Instance);
-    // TODO: Sanity check things.  Make sure the method has no params, isn't 
+    // TODO: Sanity check things.  Make sure the method has no params, isn't
     // generic, isn't abstract, etc.
 
-    // Order is randomized to minimize the likelihood of tests winding up 
+    // Order is randomized to minimize the likelihood of tests winding up
     // being accidentally order-dependant.
     ArrayList methodsInRandomOrder = new ArrayList();
     foreach(MethodInfo m in methods)
@@ -339,7 +339,7 @@ public abstract class UnityTest : MonoBehaviour {
             _Fail("Test method " + m.Name + " must be a coroutine or return void.  Returns: " + m.ReturnType.Name);
         }
         // ---------------------------------------------------------------------
-        
+
         CheckExceptions(m);
 
         // Want to break out BEFORE teardown to make debugging possible.
@@ -349,7 +349,7 @@ public abstract class UnityTest : MonoBehaviour {
         }
 
         DoTearDown();
-        
+
         AccumulateStats();
 
         // Skip a frame inbetween tests to avoid clobbering one another.
@@ -403,9 +403,9 @@ public abstract class UnityTest : MonoBehaviour {
 #endif
     currentResult.messages.Add(new TestMessage(msg, new StackTrace(true), ex));
   }
-  
+
   private void _Pass() {
-    currentResult.assertions++;    
+    currentResult.assertions++;
   }
 
 

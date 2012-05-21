@@ -44,7 +44,7 @@ public class GUITools {
 
     return tcs;
   }
-  
+
   public static void RestoreTextColor(TextColorState oldColor) {
     GUIStyle style = GUI.skin.GetStyle(oldColor.styleName);
     style.normal.textColor = oldColor.styleColor;
@@ -60,7 +60,7 @@ public class GUITools {
         _ConstrainedBox.border = new RectOffset();
         _ConstrainedBox.padding = new RectOffset();
         _ConstrainedBox.margin = new RectOffset();
-        
+
         _ConstrainedBox.clipping = TextClipping.Clip;
         _ConstrainedBox.stretchWidth = false;
         _ConstrainedBox.stretchHeight = false;

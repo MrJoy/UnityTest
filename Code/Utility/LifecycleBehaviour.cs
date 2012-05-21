@@ -9,7 +9,7 @@
 // Set of utilities/helpers for tracking events that get fired against an object
 // in order to produce tests thereof.
 //
-// Use ExpectedEvent and its subclasses to describe the details of the events 
+// Use ExpectedEvent and its subclasses to describe the details of the events
 // you're concerned with, and Evt to filter out irrelevant events.
 //
 // Quirks of Unity behavior will be documented via sub-classes of ExpectedEvent.
@@ -43,9 +43,9 @@ public enum Evt : long {
   OnGUI              = 0x00008000,
   OnApplicationPause = 0x00010000,
   OnApplicationQuit  = 0x00020000,
-  
+
   SetEnabled         = 0x00040000,
-  
+
   //                   Awake      Start      Reset      OnLevelWasLoaded OnEnable   OnDisable  OnApplicationQuit SetEnable
   Lifecycle          = 0x00000001+0x00000002+0x00000004+0x00000008      +0x00000010+0x00000020+0x00020000       +0x00040000,
   //                   OnCollision*
@@ -109,7 +109,7 @@ public class EventHistory {
       tmp += "\t\t" + otherData;
     return tmp;
   }
-  
+
   public static string ToString(Evt mask, ArrayList eventHistory) {
     System.Text.StringBuilder sb = new System.Text.StringBuilder();
     foreach(EventHistory h in eventHistory) {
@@ -148,7 +148,7 @@ public class ExpectedEvent : EventHistory {
         .AppendFormat("{f4}", Mathf.Abs(realtimeSinceStartup));
     }
   }
-  
+
   protected virtual void StatesToString(System.Text.StringBuilder sb) {
     sb.Append(activeState ? "+" : "-")
       .Append(enabledState ? "+" : "-");
@@ -179,14 +179,14 @@ public class ExpectedEvent : EventHistory {
 
     // Make sure we're looking at the right event type.
     if(name != actualEvent.name) return true;
-    
+
     return false;
   }
-  
+
   protected virtual bool CheckTimes(float lastTime, EventHistory actualEvent) {
     // Make sure we're on the exact frame we expect.
     if((frame > 0) && (frame != actualEvent.frame)) return true;
-    // Make sure that at the specified time value is in the past (lets us test 
+    // Make sure that at the specified time value is in the past (lets us test
     // that a certain amount of time has been waited).
     if((realtimeSinceStartup > 0) && (realtimeSinceStartup > actualEvent.realtimeSinceStartup)) return true;
     else if(realtimeSinceStartup < 0) {
@@ -200,10 +200,10 @@ public class ExpectedEvent : EventHistory {
 
   protected virtual bool CheckState(EventHistory actualEvent) {
     if((enabledState != actualEvent.enabledState) || (activeState != actualEvent.activeState)) return true;
-    
+
     return false;
   }
-  
+
   protected virtual bool CheckOther(EventHistory actualEvent) {
     // TODO: Make this less sucky.  Come up with something that's clean and easy
     // for various event types...
@@ -245,12 +245,12 @@ public class ExpectedEvent : EventHistory {
   }
 }
 
-// Helper for dealing with the realities of an OnDisable caused by a Destroy 
+// Helper for dealing with the realities of an OnDisable caused by a Destroy
 // against the gameObject.
 //
 // Special things to note about this event:
 //
-// 1) You cannot count on gameObject.active to have any specific value.  It may 
+// 1) You cannot count on gameObject.active to have any specific value.  It may
 //    OR MAY NOT have the value it had before Destroy was called!
 public class OnDisableFromDestroy : ExpectedEvent {
   public OnDisableFromDestroy() : base(Evt.OnDisable) {
@@ -284,7 +284,7 @@ public class OnDisableFromDestroy : ExpectedEvent {
 
   protected override bool CheckState(EventHistory actualEvent) {
     if(enabledState != actualEvent.enabledState) return true;
-    
+
     return false;
   }
 
@@ -295,9 +295,9 @@ public class LifecycleBehaviour : MonoBehaviour {
 
   public new bool enabled {
     get { return base.enabled; }
-    set { 
+    set {
       AddEvent(Evt.SetEnabled, value ? "T" : "F");
-      base.enabled = value; 
+      base.enabled = value;
     }
   }
   public virtual void Awake() { AddEvent(Evt.Awake); }
@@ -338,7 +338,7 @@ public class EventTest : UnityTest {
   public void AssertEvents(Evt mask, ExpectedEvent[] expected, ArrayList actual, string msg) {
     AssertTrue(ExpectedEvent.Assert(mask, expected, actual), msg);
   }
-  
+
   public void AssertEvents(Evt mask, ExpectedEvent[] expected, ArrayList actual) {
     AssertEvents(mask, expected, actual, "Event history did not match expected result.  Got:\n" + EventHistory.ToString(mask, actual) + "\n\nExpected:\n" + EventHistory.ToString(expected));
   }

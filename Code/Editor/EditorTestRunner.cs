@@ -7,9 +7,9 @@
 //  2009-10-12 - jdf - Remove spurious static var when it isn't needed.
 //  2009-09-05 - jdf - A little refactoring of the UI code.
 //                   - Ditch console output until I can do a better job of it.
-//                   - Make in-game GUI show in-editor, since Unity/iPhone 
+//                   - Make in-game GUI show in-editor, since Unity/iPhone
 //                     throws gunk into the logs with custom windows.
-//                   - ResultViewer and UnityTestController no longer 
+//                   - ResultViewer and UnityTestController no longer
 //                     accidentally share state.
 //  2009-07-16 - jdf - Handle tests that do no actual assertions better.
 //  2009-07-03 - jdf - Initial version.
@@ -25,7 +25,7 @@ public class EditorTestRunner : EditorWindow {
 #if UNITY_IPHONE
   private static EditorTestRunner window = null;
 #endif
-  
+
   [MenuItem("Window/UnityTest")]
   public static void ShowTestResults() {
 #if UNITY_IPHONE
@@ -63,7 +63,7 @@ public class EditorTestRunner : EditorWindow {
   }
 
 #if UNITY_IPHONE
-  public void OnCloseWindow() { 
+  public void OnCloseWindow() {
     window = null;
     if(UnityTest.TestRunner == this)
       UnityTest.TestRunner = null;
@@ -87,7 +87,7 @@ public class EditorTestRunner : EditorWindow {
     if(UnityTest.TestRunner == this)
       UnityTest.TestRunner = null;
   }
-  
+
   public void OnDestroy() {
     if(UnityTest.TestRunner == this)
       UnityTest.TestRunner = null;

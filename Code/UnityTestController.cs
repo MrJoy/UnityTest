@@ -5,20 +5,20 @@
 //
 //  2009-10-18 - jdf - Refactor testunner and GUI code considerably.
 //  2009-09-05 - jdf - Deal with formatting a bit more gracefully and allow us
-//                     to jam together a bit more data about how to format 
-//                     results.  Add support for an external skin with a 
+//                     to jam together a bit more data about how to format
+//                     results.  Add support for an external skin with a
 //                     fixed-width font.
 //                   - Ditch console output until I can do a better job of it.
-//                   - Make in-game GUI show in-editor, since Unity/iPhone 
+//                   - Make in-game GUI show in-editor, since Unity/iPhone
 //                     throws gunk into the logs with custom windows.
-//                   - Add support for captureFrameRate, including the ability 
-//                     to run multiple iterations under a variety of frame 
+//                   - Add support for captureFrameRate, including the ability
+//                     to run multiple iterations under a variety of frame
 //                     rates.
 //  2009-07-03 - jdf - Capture results and add testrunner UI.
 //  2009-07-02 - jdf - Initial version.
 //
 //-----------------------------------------------------------------
-// A utility to iterate through all the scenes in a build, executing whichever 
+// A utility to iterate through all the scenes in a build, executing whichever
 // test suites it encounters along the way in sequence before proceeding to the
 // next scene.
 //
@@ -45,6 +45,7 @@ public class SuiteResults {
 
 public class UnityTestController : MonoBehaviour {
   public bool iterateScenes = false;
+  public string[] scenes;
 
   public int[] captureFramerates;
 
@@ -53,31 +54,31 @@ public class UnityTestController : MonoBehaviour {
 
   private TestResultsViewState viewState = new TestResultsViewState();
   private ArrayList testSuites = new ArrayList();
-  
+
   public static UnityTestController Instance;
 
-  public void Awake() { 
-    Instance = this; 
+  public void Awake() {
+    Instance = this;
     if(UnityTest.TestRunner == null)
       UnityTest.TestRunner = this;
   }
-  public void OnEnable() { 
-    Instance = this; 
+  public void OnEnable() {
+    Instance = this;
     if(UnityTest.TestRunner == null)
       UnityTest.TestRunner = this;
   }
-  public void OnApplicationQuit() { 
+  public void OnApplicationQuit() {
     if(UnityTest.TestRunner == this)
       UnityTest.TestRunner = null;
   }
-  public void OnLevelWasLoaded() { 
-    testSuites.Clear(); 
-    Instance = this; 
+  public void OnLevelWasLoaded() {
+    testSuites.Clear();
+    Instance = this;
     if(UnityTest.TestRunner == null)
       UnityTest.TestRunner = this;
-    StartCoroutine(Start()); 
+    StartCoroutine(Start());
   }
-  
+
   public void OnGUI() {
     if(UnityTest.TestRunner == this) {
       GUI.depth = -10;
@@ -90,10 +91,10 @@ public class UnityTestController : MonoBehaviour {
   public IEnumerator Start() {
     // Skip a frame before, to let tests register themselves, etc.
     yield return 0;
-    
+
     if((captureFramerates == null) || (captureFramerates.Length == 0))
       captureFramerates = new int[] { 0 };
-    
+
     foreach(int fps in captureFramerates) {
       string variant = null;
       if(fps != 0) variant = " [@" + fps + " fps]";
