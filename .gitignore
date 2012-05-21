@@ -1,0 +1,24 @@
+# Mac cruft.
+.DS_Store
+
+# Unity gubbins.
+Library/*
+!Library/*.asset
+Library/InspectorExpandedItems.asset
+Library/EditorUserBuildSettings.asset
+Library/EditorUserSettings.asset
+Library/MonoManager.asset
+Temp/
+
+# MonoDevelop IDE leavings...
+*.pidb
+*.pidb.meta
+*.userprefs
+*.userprefs.meta
+
+# Debugging symbols...
+*.pdb
+*.pdb.meta
+*.mdb
+*.mdb.meta
+
