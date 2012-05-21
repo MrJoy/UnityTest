@@ -45,7 +45,6 @@ public class SuiteResults {
 
 public class UnityTestController : MonoBehaviour {
   public bool iterateScenes = false;
-  public string[] scenes;
 
   public int[] captureFramerates;
 
