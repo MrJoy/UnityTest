@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------
-//  GUITools v0.2
-//  Copyright 2009 MrJoy, Inc.
+//  GUITools
+//  Copyright 2009-2012 MrJoy, Inc.
 //  All rights reserved
 //
 //  2009-10-18 - jdf - Refactor testunner and GUI code considerably.

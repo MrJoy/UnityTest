@@ -1,18 +1,19 @@
 //-----------------------------------------------------------------
-//  LifecycleBehaviour v0.1
-//  Copyright 2009 MrJoy, Inc.
+//  LifecycleBehaviour
+//  Copyright 2009-2012 MrJoy, Inc.
 //  All rights reserved
 //
 //  2009-09-05 - jdf - Initial version.
 //
 //-----------------------------------------------------------------
-// Set of utilities/helpers for tracking events that get fired against an object
-// in order to produce tests thereof.
+// Set of utilities/helpers for tracking events that get fired against an
+// object in order to produce tests thereof.
 //
 // Use ExpectedEvent and its subclasses to describe the details of the events
 // you're concerned with, and Evt to filter out irrelevant events.
 //
-// Quirks of Unity behavior will be documented via sub-classes of ExpectedEvent.
+// Quirks of Unity behavior will be documented via sub-classes of
+// ExpectedEvent.
 //
 // Subclass LifecycleBehaviour to manipulate the object over its lifecycle.
 //

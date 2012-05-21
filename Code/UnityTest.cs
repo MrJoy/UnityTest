@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------
-//  UnityTest v0.42
-//  Copyright 2009 MrJoy, Inc.
+//  UnityTest
+//  Copyright 2009-2012 MrJoy, Inc.
 //  All rights reserved
 //
 //  2009-10-18 - jdf - Get rid of support for legacy assert syntax.
@@ -133,6 +133,8 @@ public class TestResult {
 }
 
 public abstract class UnityTest : MonoBehaviour {
+  public const string VERSION = "0.5.0";
+
   // ===========================================================================
   // Interface for sub-classes.
   // ===========================================================================

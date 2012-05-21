@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------
-//  TestRunnerGUI v0.1
-//  Copyright 2009 MrJoy, Inc.
+//  TestRunnerGUI
+//  Copyright 2009-2012 MrJoy, Inc.
 //  All rights reserved
 //
 //  2009-10-18 - jdf - Initial version.

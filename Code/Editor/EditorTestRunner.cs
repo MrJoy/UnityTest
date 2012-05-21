@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------
-//  EditorTestRunner (formerly ResultViewer) v0.4
-//  Copyright 2009 MrJoy, Inc.
+//  EditorTestRunner
+//  Copyright 2009-2012 MrJoy, Inc.
 //  All rights reserved
 //
 //  2009-10-18 - jdf - Refactor testunner and GUI code considerably.

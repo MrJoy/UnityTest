@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------
-//  ShouldThrowExceptionAttribute v0.1
-//  Copyright 2009 MrJoy, Inc.
+//  ShouldThrowExceptionAttribute
+//  Copyright 2009-2012 MrJoy, Inc.
 //  All rights reserved
 //
 //  2009-10-14 - jdf - Initial version.
